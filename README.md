@@ -1,15 +1,12 @@
 # AI Transcription Pipeline
 
-This project provides a lightweight, local-first pipeline for transcribing recorded meetings or voice notes using OBS, WhisperX, and optional text cleanup tools.
-
-Built for transparency, speed, and security—no cloud services required.
+This respository demonstrates a local AI transcription workflow using OBS, WhisperX, and optional text post-processing tools. Attempts to reflect best practices in open-source documentation, modular CLI scripting, reproducible pipelines, docs-as-code mindset, and privacy-aware preprocessing.
 
 ## Features
 
 - Uses `.mkv` recordings from OBS Studio
 - Transcribes audio using WhisperX with diarization support
 - Optional keyword and pattern cleanup (redaction)
-- Designed for modular integration into larger AI workflows
 
 ## Workflow Overview
 
@@ -18,7 +15,7 @@ Built for transparency, speed, and security—no cloud services required.
    - Convert `.mkv` to `.wav`
    - Transcribe using WhisperX
    - Output transcript into a subfolder
-3. (Optional) Run `redactor.py` to clean names, IPs, versions, etc.
+3. (Optional) Run `redactor.py` to clean names, IPs, versions, and more as directed in the Optional Cleanup section below.
 
 ## Repository Contents
 
@@ -37,7 +34,7 @@ Built for transparency, speed, and security—no cloud services required.
 Run from PowerShell:
 
 ```powershell
-.	ranscribe_obs_auto.ps1
+.	transcribe_obs_auto.ps1
 ```
 
 - Prompts for OBS recording folder
@@ -55,11 +52,10 @@ Dependencies:
 Run from Python:
 
 ```bash
-python redactor.py transcript.txt [keywords.txt]
+python redactor.py transcript.txt
 ```
-
-- Replaces names, domains, IPs, and version strings with `[REDACTED]`
-- If provided, loads custom redaction terms from `keywords.txt` (one per line)
+- Insert your transcript file name after redactor.py
+- Replaces names, domains, IPs, and version strings listed in `keywords.txt` with `[REDACTED]` 
 - Outputs: `transcript.redacted.txt`
 
 ## Summarizer Module (Prototype)
@@ -86,6 +82,8 @@ This module is included to demonstrate forward-looking architecture and AI integ
 - [ ] Web-based transcript viewer
 - [ ] Diarization parser and speaker tag refinements
 - [ ] Optional pre-trimming based on silence or voice activity
+- [ ] Modularize WhisperX options into a config file
+- [ ] Maybe serve markdown docs via MkDocs Material
 
 ## Privacy Note
 
