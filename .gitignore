@@ -1,0 +1,9 @@
+# Ignore redaction-specific files
+*.redacted.txt
+keywords.txt
+
+# Ignore system cruft
+__pycache__/
+*.log
+*.tmp
+.DS_Store
